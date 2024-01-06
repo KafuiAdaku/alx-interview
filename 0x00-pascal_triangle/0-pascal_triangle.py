@@ -4,6 +4,7 @@
 
 memory = {}
 
+
 def combination(n, r):
     """computes the combinatorics of two integers"""
     if r == 0 or n == r:
