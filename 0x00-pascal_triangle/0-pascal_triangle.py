@@ -2,12 +2,20 @@
 """This module contains a function called `pascal_triangle`"""
 
 
+memory = {}
+
 def combination(n, r):
     """computes the combinatorics of two integers"""
     if r == 0 or n == r:
         return 1
 
-    return combination(n - 1, r - 1) + combination(n - 1, r)
+    if (n, r) in memory:
+        return memory[(n, r)]
+
+    result = combination(n - 1, r - 1) + combination(n - 1, r)
+    memory[(n, r)] = result
+
+    return result
 
 
 def pascal_triangle(n):
