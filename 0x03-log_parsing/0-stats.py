@@ -7,8 +7,11 @@ import re
 
 def parse_log_line(line):
     """Returns a regular expression match object"""
-    # pattern = r"^\d+\.\d+\.\d+.\d - \[.+\] \"GET /projects/260 HTTP/1.1\" (\d{3}) (\d+)$"
-    pattern = r"^\d+\.\d+\.\d+\.\d+ - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,6}\] \"GET /projects/260 HTTP/1.1\" (\d{3}) (\d{1,4})$"
+    pattern = (
+        r"^\d+\.\d+\.\d+\.\d+ - "
+        r"\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{1,6}\] "
+        r"\"GET /projects/260 HTTP/1.1\" (\d{3}) (\d{1,4})$"
+        )
     regex = re.compile(pattern)
     mo = regex.search(line)
     return mo
@@ -36,6 +39,7 @@ def process_log():
             if count == 10:
                 count = 0
                 print(f"File size: {cum_size}")
+                cum_size = 0
                 for k in sorted(stat_code_cnt.keys()):
                     print(f"{k}: {stat_code_cnt[k]}")
     except KeyboardInterrupt:
