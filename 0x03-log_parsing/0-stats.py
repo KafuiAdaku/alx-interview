@@ -30,7 +30,7 @@ def process_log():
             line = line.strip()
             if line:
                 log_mo = parse_log_line(line)
-                if log_mo:
+                if log_mo and type(int(log_mo.group(1))) is int:
                     status = log_mo.group(1)
                     file_size = int(log_mo.group(2))
                     cum_size += file_size
