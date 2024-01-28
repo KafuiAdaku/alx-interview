@@ -42,6 +42,7 @@ def process_log():
                 cum_size = 0
                 for k in sorted(stat_code_cnt.keys()):
                     print(f"{k}: {stat_code_cnt[k]}")
+
     except KeyboardInterrupt as e:
         pass
 
