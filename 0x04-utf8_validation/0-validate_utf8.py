@@ -12,9 +12,6 @@ def validUTF8(data):
     """
     byte = 0
 
-    if not data:
-        return False
-
     for character in data:
         bin_num = "{:08b}".format(character & 0b11111111)
         if byte == 0:
