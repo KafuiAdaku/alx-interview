@@ -19,10 +19,18 @@ def isWinner(x, nums):
 
     primes = [i for i, isprime in enumerate(primes) if isprime]
 
-    players = 0
+    maria_wins = 0
+    ben_wins = 0
     for n in nums:
-        players += sum(1 for p in primes if p <= n)
+        turn = sum(1 for p in primes if p <= n)
+        if turn % 2 == 0:
+            ben_wins += 1
+        else:
+            maria_wins += 1
 
-    if players % 2 == 0:
+    if maria_wins > ben_wins:
+        return "Maria"
+    elif ben_wins > maria_wins:
         return "Ben"
-    return "Maria"
+    else:
+        return None
